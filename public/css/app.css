@@ -1,1 +1,12 @@
+/* register error messages : */
+.ErrUl {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  filter: drop-shadow(1px 1px 3px #3d3d3d);
+}
 
+.ErrUl li {
+  list-style-type: square;
+  font-size: 13px;
+  color: #f5f5f5;
+}

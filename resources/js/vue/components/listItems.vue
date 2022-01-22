@@ -28,8 +28,11 @@
                 </button>
             </li>
         </ul>
-        <div v-show="gettoken" class="text-center">
-            Your Todo List is Empty Please Sign in ^-^
+        <div
+            v-if="gettoken"
+            class="h-75 d-flex align-items-center justify-content-center"
+        >
+            <strong> Your Todo List is Empty Please Sign in ^-^ </strong>
         </div>
     </div>
 </template>

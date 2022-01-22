@@ -53,12 +53,16 @@
             >
                 Register
             </button>
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mb-3">
                 <label
                     >Already have an account?
                     <router-link to="/sign">Login Now!</router-link></label
                 >
             </div>
+            <ul v-if="errorsLi" class="bg-danger rounded ErrUl">
+                <li v-if="errorsLi.email">{{ errorsLi.email }} <br /></li>
+                <li v-if="errorsLi.password">{{ errorsLi.password }}</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -74,9 +78,26 @@ export default {
             password_confirmation: "",
             token: "",
             user_id: "",
+            errors: null,
         };
     },
+    computed: {
+        errorsLi() {
+            return this.errors;
+        },
+    },
     methods: {
+        setErr(err) {
+            var fr = {
+                email: null,
+                password: null,
+            };
+            err.email ? (fr.email = err.email[0]) : (fr.email = null);
+            err.password
+                ? (fr.password = err.password[0])
+                : (fr.password = null);
+            this.errors = fr;
+        },
         register() {
             axios
                 .post("/api/register", {
@@ -92,12 +113,12 @@ export default {
                     this.$store.commit("setuserid", this.user_id);
                     window.location.href = "/";
                 })
-                .catch((res) => {
-                    console.log(res);
+                .catch((error) => {
+                    this.setErr(error.response.data.errors);
                 });
         },
     },
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

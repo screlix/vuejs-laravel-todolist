@@ -7,6 +7,7 @@
                 type="text"
                 name="name"
                 v-model="item.name"
+                placeholder="Start Writing your first todo 😃"
                 required
             />
             <button class="m-3" type="submit" @click="addItem()">

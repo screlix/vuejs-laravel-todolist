@@ -76,6 +76,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "register",
   data: function data() {
@@ -85,10 +89,25 @@ __webpack_require__.r(__webpack_exports__);
       password: "",
       password_confirmation: "",
       token: "",
-      user_id: ""
+      user_id: "",
+      errors: null
     };
   },
+  computed: {
+    errorsLi: function errorsLi() {
+      return this.errors;
+    }
+  },
   methods: {
+    setErr: function setErr(err) {
+      var fr = {
+        email: null,
+        password: null
+      };
+      err.email ? fr.email = err.email[0] : fr.email = null;
+      err.password ? fr.password = err.password[0] : fr.password = null;
+      this.errors = fr;
+    },
     register: function register() {
       var _this = this;
 
@@ -106,8 +125,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.commit("setuserid", _this.user_id);
 
         window.location.href = "/";
-      })["catch"](function (res) {
-        console.log(res);
+      })["catch"](function (error) {
+        _this.setErr(error.response.data.errors);
       });
     }
   }
@@ -349,7 +368,7 @@ var render = function () {
         [_vm._v("\n            Register\n        ")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 text-center" }, [
+      _c("div", { staticClass: "col-12 text-center mb-3" }, [
         _c(
           "label",
           [
@@ -361,6 +380,18 @@ var render = function () {
           1
         ),
       ]),
+      _vm._v(" "),
+      _vm.errorsLi
+        ? _c("ul", { staticClass: "bg-danger rounded ErrUl" }, [
+            _vm.errorsLi.email
+              ? _c("li", [_vm._v(_vm._s(_vm.errorsLi.email) + " "), _c("br")])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.errorsLi.password
+              ? _c("li", [_vm._v(_vm._s(_vm.errorsLi.password))])
+              : _vm._e(),
+          ])
+        : _vm._e(),
     ]),
   ])
 }

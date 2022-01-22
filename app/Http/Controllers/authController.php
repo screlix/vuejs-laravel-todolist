@@ -15,19 +15,20 @@ class authController extends Controller
     public function register(Request $request)
     {
         //validate fields
-        $fields = $request->validate([
+        $this->validate($request, [
             "name" => "required|string",
             "email" => "email|unique:users|string|required",
             "password" => "required|string|min:8|max:15|confirmed",
         ]);
+
         //create the new user with given credentials
         $user = User::create([
-            "name" => $fields['name'],
-            "email" => $fields['email'],
-            "password" => bcrypt($fields['password']),
+            "name" => $request['name'],
+            "email" => $request['email'],
+            "password" => bcrypt($request['password']),
         ]);
         //session
-        Session::put("user_id", "hello");
+        Session::put("user_id", $user->id);
         ///create token for that user
         $token = $user->createToken('tokenn')->plainTextToken;
         //create http response we will return then
@@ -56,7 +57,7 @@ class authController extends Controller
         $user = User::where('email', $fields['email'])->first();
         if (!$user) {
             return response([
-                "message" => "user doesn't exist",
+                "message" => "email doesn't exist",
             ], 401);
         } elseif (!Hash::check($fields["password"], $user->password)) {
             return response([

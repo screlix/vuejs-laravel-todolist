@@ -54,6 +54,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sign",
   data: function data() {
@@ -61,10 +64,19 @@ __webpack_require__.r(__webpack_exports__);
       email: "",
       password: "",
       token: "",
-      userid: ""
+      userid: "",
+      errors: null
     };
   },
+  computed: {
+    errorsLi: function errorsLi() {
+      return this.errors;
+    }
+  },
   methods: {
+    setErr: function setErr(err) {
+      this.errors = err;
+    },
     login: function login() {
       var _this = this;
 
@@ -76,12 +88,13 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$store.commit("setToken", _this.token);
 
-        window.location.href = "/";
         _this.userid = data.data.user.id;
 
         _this.$store.commit("setuserid", _this.userid);
-      })["catch"](function (res) {
-        console.log(res);
+
+        window.location.href = "/";
+      })["catch"](function (error) {
+        _this.setErr(error.response.data.message);
       });
     }
   }
@@ -247,7 +260,7 @@ var render = function () {
         [_vm._v("\n            Login\n        ")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 text-center" }, [
+      _c("div", { staticClass: "col-12 text-center mb-2" }, [
         _c(
           "label",
           [
@@ -259,6 +272,12 @@ var render = function () {
           1
         ),
       ]),
+      _vm._v(" "),
+      _vm.errorsLi
+        ? _c("ul", { staticClass: "bg-danger rounded ErrUl" }, [
+            _vm.errorsLi ? _c("li", [_vm._v(_vm._s(_vm.errorsLi))]) : _vm._e(),
+          ])
+        : _vm._e(),
     ]),
   ])
 }

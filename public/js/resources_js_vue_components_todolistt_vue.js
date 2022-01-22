@@ -30,6 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "addItem",
@@ -75,6 +76,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -605,7 +609,12 @@ var render = function () {
           },
         ],
         staticClass: "form-control m-3",
-        attrs: { type: "text", name: "name", required: "" },
+        attrs: {
+          type: "text",
+          name: "name",
+          placeholder: "Start Writing your first todo 😃",
+          required: "",
+        },
         domProps: { value: _vm.item.name },
         on: {
           input: function ($event) {
@@ -738,21 +747,20 @@ var render = function () {
       0
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
+    _vm.gettoken
+      ? _c(
+          "div",
           {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.gettoken,
-            expression: "gettoken",
+            staticClass:
+              "h-75 d-flex align-items-center justify-content-center",
           },
-        ],
-        staticClass: "text-center",
-      },
-      [_vm._v("\n        Your Todo List is Empty Please Sign in ^-^\n    ")]
-    ),
+          [
+            _c("strong", [
+              _vm._v(" Your Todo List is Empty Please Sign in ^-^ "),
+            ]),
+          ]
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

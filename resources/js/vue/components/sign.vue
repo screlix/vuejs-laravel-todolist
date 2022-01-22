@@ -29,7 +29,7 @@
             >
                 Login
             </button>
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mb-2">
                 <label
                     >Don't have an account?
                     <router-link to="/register"
@@ -37,6 +37,9 @@
                     ></label
                 >
             </div>
+            <ul v-if="errorsLi" class="bg-danger rounded ErrUl">
+                <li v-if="errorsLi">{{ errorsLi }}</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -50,9 +53,18 @@ export default {
             password: "",
             token: "",
             userid: "",
+            errors: null,
         };
     },
+    computed: {
+        errorsLi() {
+            return this.errors;
+        },
+    },
     methods: {
+        setErr(err) {
+            this.errors = err;
+        },
         login() {
             axios
                 .post("/api/login", {
@@ -63,12 +75,12 @@ export default {
                     this.token = data.data.token;
                     //using presisted vuex :
                     this.$store.commit("setToken", this.token);
-                    window.location.href = "/";
                     this.userid = data.data.user.id;
                     this.$store.commit("setuserid", this.userid);
+                    window.location.href = "/";
                 })
-                .catch((res) => {
-                    console.log(res);
+                .catch((error) => {
+                    this.setErr(error.response.data.message);
                 });
         },
     },
