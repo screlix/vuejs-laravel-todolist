@@ -612,7 +612,7 @@ var render = function () {
         attrs: {
           type: "text",
           name: "name",
-          placeholder: "Start Writing your first todo 😃",
+          placeholder: "Start writing your first todo 😃",
           required: "",
         },
         domProps: { value: _vm.item.name },
