@@ -72,7 +72,7 @@ body {
 #itemConte {
     margin: auto;
     transform: translateY(-150px);
-    border-radius: 6px;
+    border-radius: 6.6px;
     width: 40%;
     background: rgb(255, 255, 255);
 }
