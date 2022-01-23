@@ -35,19 +35,9 @@ export default {
             //pppp
             this.$set(this.item, "user_id", this.$store.getters.getuserid);
             axios
-                .post(
-                    "/api/items",
-                    {
-                        item: this.item,
-                    },
-                    {
-                        headers: {
-                            "Content-Type": "application/json;charset=UTF-8",
-                            "Access-Control-Allow-Origin": "*",
-                            "Accept": "application/json",
-                        },
-                    }
-                )
+                .post("/api/items", {
+                    item: this.item,
+                })
                 .then((res) => {
                     if (res.status == 201) {
                         this.item.name = "";
