@@ -19,10 +19,9 @@ class CreateItemsTable extends Migration
             $table->boolean('done')->default(false);
             $table->timestamp('done_at')->nullable();
             $table->integer('user_id')->unsigned();
-        });
-        Schema::table('pr', function ($table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
         });
+
     }
 
     /**
