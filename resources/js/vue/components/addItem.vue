@@ -45,8 +45,8 @@ export default {
                         this.$emit("itemadded");
                     }
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch((error) => {
+                    console.log(error.response.data);
                 });
         },
     },
