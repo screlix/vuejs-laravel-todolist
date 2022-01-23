@@ -32,6 +32,7 @@ export default {
     methods: {
         addItem() {
             if (this.item.name == "") return;
+            //pppp
             this.$set(this.item, "user_id", this.$store.getters.getuserid);
             axios
                 .post("/api/items", {
