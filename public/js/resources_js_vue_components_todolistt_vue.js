@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.item.name == "") return; //pppp
 
       this.$set(this.item, "user_id", this.$store.getters.getuserid);
-      axios.post("/api/item/store", {
+      axios.post("api/item/store", {
         item: this.item
       }).then(function (res) {
         if (res.status == 201) {

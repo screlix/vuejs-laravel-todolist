@@ -27,9 +27,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //post
     Route::post('item/store', [itemController::class, 'store']);
     //put
-    Route::put("items/{id}", [itemController::class, "update"]);
+    Route::put("item/{id}", [itemController::class, "update"]);
     //delete
-    Route::delete("items/{id}", [itemController::class, "destroy"]);
+    Route::delete("item/{id}", [itemController::class, "destroy"]);
     // Route::apiResource("/items", "itemController");
 });
 Route::post('/login', [authController::class, "login"]);
