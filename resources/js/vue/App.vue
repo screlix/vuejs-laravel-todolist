@@ -7,11 +7,9 @@
                 </li>
                 <nav>
                     <li>
-                        <router-link class="" to="/sign"> Sign in </router-link>
+                        <router-link class="" to="/sign">Sign in</router-link>
                     </li>
-                    <li>
-                        <button class="" @click="logout()">Logout</button>
-                    </li>
+                    <li><button class="" @click="logout()">Logout</button></li>
                 </nav>
             </ul>
         </header>

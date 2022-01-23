@@ -22,10 +22,16 @@ use Illuminate\Support\Facades\Route;
 // Route::delete('item/{id}', [itemController::class, 'destroy']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::apiResource('/items', itemController::class);
     Route::post("/logout", [authController::class, 'logout']);
     Route::get('/items', [itemController::class, 'index']);
-
+    Route::prefix("/item")->group(function () {
+        //post
+        Route::post("/store", [itemController::class, "store"]);
+        //put
+        Route::put("/{id}", [itemController::class, "update"]);
+        //delete
+        Route::delete("/{id}", [itemController::class, "destroy"]);
+    });
 });
 Route::post('/login', [authController::class, "login"]);
 Route::post('/register', [authController::class, 'register']);

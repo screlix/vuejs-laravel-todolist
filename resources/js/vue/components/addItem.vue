@@ -31,10 +31,11 @@ export default {
     },
     methods: {
         addItem() {
-            if (this.nameV == "") return;
+            if (this.item.name == "") return;
+            //pppp
             this.$set(this.item, "user_id", this.$store.getters.getuserid);
             axios
-                .post("/api/items", {
+                .post("/api/item/store", {
                     item: this.item,
                 })
                 .then((res) => {
@@ -44,8 +45,8 @@ export default {
                         this.$emit("itemadded");
                     }
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch((error) => {
+                    console.log(error.response.data.message);
                 });
         },
     },
