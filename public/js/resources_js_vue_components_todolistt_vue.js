@@ -51,14 +51,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$set(this.item, "user_id", this.$store.getters.getuserid);
       axios.post("/api/items", {
         item: this.item
-      }, {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": CLIENT_ORIGIN,
-          "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE",
-          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Credentials": true
-        }
       }).then(function (res) {
         if (res.status == 201) {
           _this.item.name = "";
@@ -247,6 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var access_token = _js_vue_store_index__WEBPACK_IMPORTED_MODULE_0__["default"].state.token;
 axios.defaults.headers.common["Authorization"] = "Bearer ".concat(access_token);
+axios.defaults.withCredentials = true;
 
 /***/ }),
 
