@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$emit("itemadded");
         }
       })["catch"](function (error) {
-        console.log(error.response.data);
+        console.log(error.response);
       });
     }
   }
