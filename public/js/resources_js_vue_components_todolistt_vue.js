@@ -46,7 +46,7 @@ __webpack_require__.r(__webpack_exports__);
     addItem: function addItem() {
       var _this = this;
 
-      if (this.nameV == "") return;
+      if (this.item.name == "") return;
       this.$set(this.item, "user_id", this.$store.getters.getuserid);
       axios.post("/api/items", {
         item: this.item
