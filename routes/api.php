@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post("/logout", [authController::class, 'logout']);
+    //item methods :
     Route::get('/items', [itemController::class, 'index']);
     //post
     Route::post("/item/store", [itemController::class, "store"]);
