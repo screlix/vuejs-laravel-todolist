@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <title>Todo list</title>
 </head>
 
