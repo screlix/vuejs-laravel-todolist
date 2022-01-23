@@ -54,8 +54,10 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json"
+          "Access-Control-Allow-Origin": CLIENT_ORIGIN,
+          "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Credentials": true
         }
       }).then(function (res) {
         if (res.status == 201) {
@@ -65,7 +67,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$emit("itemadded");
         }
       })["catch"](function (error) {
-        console.log(error.response);
+        console.log(error.response.data.message);
       });
     }
   }
