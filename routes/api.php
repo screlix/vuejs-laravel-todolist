@@ -23,14 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post("/logout", [authController::class, 'logout']);
-    //item methods :
     Route::get('/items', [itemController::class, 'index']);
-    //post
-    Route::post("/item/store", [itemController::class, "store"]);
-    //put
-    Route::put("/item/{id}", [itemController::class, "update"]);
-    //delete
-    Route::delete("/item/{id}", [itemController::class, "destroy"]);
+    Route::prefix("/items")->group(function () {
+        //post
+        Route::post("/item/store", [itemController::class, "store"]);
+        //put
+        Route::put("/item/{id}", [itemController::class, "update"]);
+        //delete
+        Route::delete("/item/{id}", [itemController::class, "destroy"]);
+    });
 });
 Route::post('/login', [authController::class, "login"]);
 Route::post('/register', [authController::class, 'register']);
