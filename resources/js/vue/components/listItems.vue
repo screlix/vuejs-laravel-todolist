@@ -54,7 +54,7 @@ export default {
     methods: {
         deleteItem(id) {
             axios
-                .delete("api/items/" + id)
+                .delete("api/item/" + id)
                 .then((res) => {
                     this.$store.commit("increitem");
                 })
@@ -62,7 +62,7 @@ export default {
         },
         updateItem(itemm) {
             axios
-                .put("api/items/" + itemm.id, {
+                .put("api/item/" + itemm.id, {
                     item: itemm,
                 })
                 .then((res) => {

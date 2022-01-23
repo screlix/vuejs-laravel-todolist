@@ -35,7 +35,7 @@ export default {
             //pppp
             this.$set(this.item, "user_id", this.$store.getters.getuserid);
             axios
-                .post("/api/items/store", {
+                .post("/api/item/store", {
                     item: this.item,
                 })
                 .then((res) => {
