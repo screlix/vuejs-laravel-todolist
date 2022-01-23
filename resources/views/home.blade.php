@@ -16,6 +16,7 @@
 
 <body>
     <div id="app">
+        @method('PUT')
 
         <app></app>
     </div>

@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.item.name == "") return; //pppp
 
       this.$set(this.item, "user_id", this.$store.getters.getuserid);
-      axios.post("/api/items", {
+      axios.post("/api/item/store", {
         item: this.item
       }).then(function (res) {
         if (res.status == 201) {
@@ -133,14 +133,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteItem: function deleteItem(id) {
       var _this = this;
 
-      axios["delete"]("api/items/" + id).then(function (res) {
+      axios["delete"]("api/item/" + id).then(function (res) {
         _this.$store.commit("increitem");
       })["catch"](function (err) {});
     },
     updateItem: function updateItem(itemm) {
       var _this2 = this;
 
-      axios.put("api/items/" + itemm.id, {
+      axios.put("api/item/" + itemm.id, {
         item: itemm
       }).then(function (res) {
         _this2.$emit("itemchanged");
@@ -239,7 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var access_token = _js_vue_store_index__WEBPACK_IMPORTED_MODULE_0__["default"].state.token;
 axios.defaults.headers.common["Authorization"] = "Bearer ".concat(access_token);
-axios.defaults.withCredentials = true;
+axios.defaults.headers.common["Content-Type"] = "application/json";
 
 /***/ }),
 
